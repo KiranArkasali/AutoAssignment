@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression" thread-count="2" parallel="classes">
+	<test name="FitPeo automation">
+		<classes>
+			<class name="runner.TestRunner"/>
+		</classes>
+	</test>
+</suite>
