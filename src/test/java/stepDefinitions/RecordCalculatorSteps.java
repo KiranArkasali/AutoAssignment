@@ -3,18 +3,11 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sl.In;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import pageObjects.RecordCalculatorPage;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static stepDefinitions.Hooks.driver;
 
 public class RecordCalculatorSteps {
     private final WebDriver webDriver;
@@ -43,6 +36,11 @@ public class RecordCalculatorSteps {
     @Then("update the slider value to {int} in the provided text field")
     public void update_the_slider_value_to_in_the_provided_text_field(Integer newValue) {
         recordCalculatorPage.updateTheSliderToTheNewPosition(newValue);
+    }
+
+    @Then("I verify the updated slider value to be {int}")
+    public void i_verify_the_updated_slider_value_to_be(Integer updatedValue) {
+       recordCalculatorPage.verifyUpdatedSliderValue(updatedValue);
     }
 
     @Then("select the below CPT codes")

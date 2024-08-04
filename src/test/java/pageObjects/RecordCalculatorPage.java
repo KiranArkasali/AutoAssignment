@@ -4,11 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ConfigReader;
 import utils.WebBasePage;
 
-import java.util.Arrays;
+import java.time.Duration;
 import java.util.List;
 
 public class RecordCalculatorPage extends WebBasePage {
@@ -38,6 +40,13 @@ public class RecordCalculatorPage extends WebBasePage {
     }
     public void updateTheSliderToTheNewPosition(Integer newValue) {
         enterElementVisible(sliderInputLocator, newValue, "Input the new slider position to 560");
+    }
+    public void verifyUpdatedSliderValue(Integer expectedValue){
+        WebElement element = findElementVisibility(sliderInputLocator);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(sliderInputLocator, "value", String.valueOf(expectedValue)));
+        String actualValue = element.getAttribute("value");
+        Assert.assertEquals(actualValue, expectedValue.toString());
     }
     public void selectTheCPTCodes(List<String> cptCodesList) {
         JavascriptExecutor js = (JavascriptExecutor) driver;

@@ -40,7 +40,6 @@ public class WebBasePage {
         }
     }
     public void clickElementVisible(By by, String name) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = findElementVisibility(by);
         if (element != null) {
             element.click();
@@ -54,7 +53,7 @@ public class WebBasePage {
         WebElement element = findElementVisibility(by);
         String value = element.getText();
         if (value.equals(name)) {
-            LOGGER.info(name + "visible");
+            LOGGER.info(name + " visible");
         } else {
             LOGGER.error(name + " is not visible");
             Assert.fail(name + " - element not found");
@@ -84,7 +83,12 @@ public class WebBasePage {
     }
     public void sendKeysByJavascript(By by, Integer value) {
         WebElement element = driver.findElement(by);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].value = "+value+";", element);
+        element.clear();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click().perform();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = '';", element);
+        actions.moveToElement(element).sendKeys(value.toString()).perform();
+
     }
     public WebElement findElementVisibility(final By by) {
         try {
@@ -108,7 +112,7 @@ public class WebBasePage {
             });
         } catch (Exception e) {
             LOGGER.error("Elements not found: " + by.toString(), e);
-            return List.of(); // Return an empty list if elements are not found
+            return List.of();
         }
         return driver.findElements(by);
     }
