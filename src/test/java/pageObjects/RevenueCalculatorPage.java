@@ -13,17 +13,17 @@ import utils.WebBasePage;
 import java.time.Duration;
 import java.util.List;
 
-public class RecordCalculatorPage extends WebBasePage {
+public class RevenueCalculatorPage extends WebBasePage {
 
     private final WebDriver driver;
 
-    private final By recordCalculatorLocator = By.xpath("//*[contains(text(), 'Revenue Calculator')]");
+    private final By revenueCalculatorLocator = By.xpath("//*[contains(text(), 'Revenue Calculator')]");
     private final By sliderLocator = By.xpath("//*[@aria-orientation='horizontal']");
     private final By sliderInputLocator = By.xpath("//*[contains(@class, 'MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall')]");
 
     private final By totalRecurringReimbursementPerMonthLocator = By.xpath("//div[contains(@class, 'MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular')]//p[contains(@class, 'MuiTypography-root MuiTypography-body2')]");
 
-    public RecordCalculatorPage(WebDriver driver) {
+    public RevenueCalculatorPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
@@ -32,8 +32,8 @@ public class RecordCalculatorPage extends WebBasePage {
         driver.get(url);
     }
     public void navigateToRevenueCalculatorPage() {
-        clickElementVisible(recordCalculatorLocator, "Revenue Calculator");
-        verifyElement(recordCalculatorLocator, "Revenue Calculator");
+        clickElementVisible(revenueCalculatorLocator, "Revenue Calculator");
+        verifyElement(revenueCalculatorLocator, "Revenue Calculator");
     }
     public void scrollTheSliderToTheCertainPosition() {
         scrollToElement(sliderLocator, "Slider been moved to position 820");
